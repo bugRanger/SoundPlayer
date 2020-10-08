@@ -1,0 +1,11 @@
+C:\Users\Hukuma\source\repos\SoundPlay\SoundPlay\obj\Debug\netcoreapp3.1\SoundPlay.csprojAssemblyReference.cache
+C:\Users\Hukuma\source\repos\SoundPlay\SoundPlay\obj\Debug\netcoreapp3.1\SoundPlay.AssemblyInfoInputs.cache
+C:\Users\Hukuma\source\repos\SoundPlay\SoundPlay\obj\Debug\netcoreapp3.1\SoundPlay.AssemblyInfo.cs
+C:\Users\Hukuma\source\repos\SoundPlay\SoundPlay\bin\Debug\netcoreapp3.1\SoundPlay.exe
+C:\Users\Hukuma\source\repos\SoundPlay\SoundPlay\bin\Debug\netcoreapp3.1\SoundPlay.deps.json
+C:\Users\Hukuma\source\repos\SoundPlay\SoundPlay\bin\Debug\netcoreapp3.1\SoundPlay.runtimeconfig.json
+C:\Users\Hukuma\source\repos\SoundPlay\SoundPlay\bin\Debug\netcoreapp3.1\SoundPlay.runtimeconfig.dev.json
+C:\Users\Hukuma\source\repos\SoundPlay\SoundPlay\bin\Debug\netcoreapp3.1\SoundPlay.dll
+C:\Users\Hukuma\source\repos\SoundPlay\SoundPlay\bin\Debug\netcoreapp3.1\SoundPlay.pdb
+C:\Users\Hukuma\source\repos\SoundPlay\SoundPlay\obj\Debug\netcoreapp3.1\SoundPlay.dll
+C:\Users\Hukuma\source\repos\SoundPlay\SoundPlay\obj\Debug\netcoreapp3.1\SoundPlay.pdb
