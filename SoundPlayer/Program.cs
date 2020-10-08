@@ -73,7 +73,7 @@
                         sourceToken?.Cancel();
                         sourceToken = new CancellationTokenSource();
 
-                        track.Play(_device, sourceToken.Token);
+                        _device.Play(track, sourceToken.Token);
                         break;
 
                     case ConsoleKey.S:
@@ -87,9 +87,25 @@
         }
 
 
-        class ConsoleSound : ISoundDevice
+        class ConsoleSound
         {
-            public void Play(Note note) => Console.Beep((int)note.Tone, (int)note.Duration);
+            public async void Play(IEnumerable<Note> notes, CancellationToken token)
+            {
+                await Task.Run(async () =>
+                {
+                    foreach (Note note in notes)
+                    {
+                        if (token.IsCancellationRequested)
+                            break;
+
+                        if (note.Tone != Tone.REST)
+                            _ = Task.Run(() => Console.Beep((int)note.Tone, (int)note.Duration + 10));
+
+                        await Task.Delay((int)note.Duration, token);
+                    }
+                },
+                token);
+            }
         }
 
 

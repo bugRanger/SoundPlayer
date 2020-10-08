@@ -1,35 +1,25 @@
 ﻿namespace SoundPlayer.Core
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
+    using System.Collections;
+    using System.Collections.Generic;
 
-    public class Track
+    public class Track : IEnumerable<Note>
     {
-        private Note[] _notes;
+        private readonly IEnumerable<Note> _notes;
 
-        public Track(Note[] notes) 
+        public string Name { get; }
+
+        public Track(IEnumerable<Note> notes) 
         {
             _notes = notes;
+            //Name = name;
         }
 
-        public async void Play(ISoundDevice device, CancellationToken token)
+        public IEnumerator<Note> GetEnumerator() => _notes.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            new Thread(() =>
-            //await Task.Run(async () =>
-            {
-                foreach (Note note in _notes)
-                {
-                    //if (token.IsCancellationRequested)
-                    //    break;
-                    //else 
-                    if (note.Tone == Tone.REST)
-                        Thread.Sleep((int)note.Duration);
-                    else
-                        device.Play(note);
-                }
-            }).Start();
-            //token);
+            return GetEnumerator();
         }
     }
 }
