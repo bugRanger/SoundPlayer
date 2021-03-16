@@ -1,7 +1,7 @@
 ﻿namespace SoundPlayer
 {
     using System;
-    using System.Collections.Generic;
+    using System.IO;
     using System.Threading;
 
     using Core;
@@ -10,20 +10,28 @@
 
     partial class Program
     {
-        static ConsolePlayer _device = new ConsolePlayer();
-        static Dictionary<string, Track> _trackList = new Dictionary<string, Track>();
+        private const string FOLDER_FOR_TRACKS = "Traks";
+
+        private static ConsolePlayer _device;
+        private static AudioRepository _repository;
 
         static void Main(string[] args)
         {
             Console.WriteLine("Press \"Q\" for exit");
 
-            // TODO: read audio track config.
-            //_trackList.Add("1", new Track(JBells));
-            //_trackList.Add("2", new Track(Sun));
-            //_trackList.Add("3", new Track(Water));
-            //_trackList.Add("4", new Track(Fire));
-            //_trackList.Add("5", new Track(Shadow));
-            //_trackList.Add("6", new Track(JBells));
+            string path = Path.Combine(Directory.GetCurrentDirectory(), FOLDER_FOR_TRACKS);
+
+            _device = new ConsolePlayer();
+            _repository = new AudioRepository(path);
+            _repository.Init();
+
+            int i = 0;
+            _repository.Save(new Track($"{++i}", Zelda));
+            _repository.Save(new Track($"{++i}", Sun));
+            _repository.Save(new Track($"{++i}", Water));
+            _repository.Save(new Track($"{++i}", Fire));
+            _repository.Save(new Track($"{++i}", Shadow));
+            _repository.Save(new Track($"{++i}", JBells));
 
             // TODO: M - make audio track.
             // TODO: P - play audio track.
@@ -69,12 +77,12 @@
                             Console.Write("Enter number track: ");
                         }
                         // TODO: Scan select track.
-                        while (!_trackList.TryGetValue(Console.ReadLine(), out track));
+                        while (!_repository.TryGetValue(Console.ReadLine(), out track));
 
                         sourceToken?.Cancel();
                         sourceToken = new CancellationTokenSource();
 
-                        _device.Play(track, sourceToken.Token);
+                        _ = _device.Play(track, sourceToken.Token);
                         break;
 
                     case ConsoleKey.S:
