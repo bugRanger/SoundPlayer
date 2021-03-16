@@ -1,4 +1,4 @@
-﻿namespace SoundPlayer.Core
+﻿namespace SoundPlayer.Core.Common
 {
     // Define a note as a frequency (tone) and the amount of 
     // time (duration) the note plays.

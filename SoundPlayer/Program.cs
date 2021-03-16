@@ -3,13 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.Threading;
-    using System.Threading.Tasks;
 
     using Core;
+    using Core.Common;
+    using Core.Player;
 
-    class Program
+    partial class Program
     {
-        static ConsoleSound _device = new ConsoleSound();
+        static ConsolePlayer _device = new ConsolePlayer();
         static Dictionary<string, Track> _trackList = new Dictionary<string, Track>();
 
         static void Main(string[] args)
@@ -17,12 +18,12 @@
             Console.WriteLine("Press \"Q\" for exit");
 
             // TODO: read audio track config.
-            _trackList.Add("1", new Track(JBells));
-            _trackList.Add("2", new Track(Sun));
-            _trackList.Add("3", new Track(Water));
-            _trackList.Add("4", new Track(Fire));
-            _trackList.Add("5", new Track(Shadow));
-            _trackList.Add("6", new Track(JBells));
+            //_trackList.Add("1", new Track(JBells));
+            //_trackList.Add("2", new Track(Sun));
+            //_trackList.Add("3", new Track(Water));
+            //_trackList.Add("4", new Track(Fire));
+            //_trackList.Add("5", new Track(Shadow));
+            //_trackList.Add("6", new Track(JBells));
 
             // TODO: M - make audio track.
             // TODO: P - play audio track.
@@ -83,28 +84,6 @@
                     default:
                         break;
                 }
-            }
-        }
-
-
-        class ConsoleSound
-        {
-            public async void Play(IEnumerable<Note> notes, CancellationToken token)
-            {
-                await Task.Run(async () =>
-                {
-                    foreach (Note note in notes)
-                    {
-                        if (token.IsCancellationRequested)
-                            break;
-
-                        if (note.Tone != Tone.REST)
-                            _ = Task.Run(() => Console.Beep((int)note.Tone, (int)note.Duration + 10));
-
-                        await Task.Delay((int)note.Duration, token);
-                    }
-                },
-                token);
             }
         }
 
